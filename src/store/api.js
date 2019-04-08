@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://pokeapi.co/api/v2"
+  baseURL: "http://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1"
 });

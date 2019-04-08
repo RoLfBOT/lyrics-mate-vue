@@ -13,7 +13,7 @@
           </form>   
         </div>
         <div>
-          {{ pokemon }}
+          {{ track_list }}
         </div>
     </div>
 </template>
@@ -21,12 +21,12 @@
 <script>
 export default {
   mounted() {
-    this.$store.dispatch("GET_POKE");
+    this.$store.dispatch("GET_TRACK_LIST");
   },
 
   computed: {
-    pokemon(){
-      return this.$store.getters.POKE;
+    track_list(){
+      return this.$store.getters.TRACK_LIST;
     }
   }
 }
