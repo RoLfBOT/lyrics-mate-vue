@@ -5,7 +5,9 @@
         <h5 class="card-title">{{ track.track.track_name }}</h5>
         <h6 class="card-subtitle text-muted">{{ track.track.album_name }}</h6>
         <p class="card-text">{{ track.track.artist_name }}</p>
-        <router-link :to="{ name: 'lyrics', params: { id: track.track.track_id }}" class="btn btn-primary btn-block"
+        <router-link
+          :to="{ name: 'lyrics', params: { id: track.track.track_id } }"
+          class="btn btn-primary btn-block"
           >Get Lyrics</router-link
         >
       </div>
