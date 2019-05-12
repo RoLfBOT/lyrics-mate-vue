@@ -8,6 +8,10 @@ export default {
   getters: {
     TRACK_LIST: state => {
       return state.track_list;
+    },
+
+    TRACK: state => id => {
+      return state.track_list.find(track => track.track.track_id === id);
     }
   },
 
@@ -18,9 +22,9 @@ export default {
   },
 
   actions: {
-    GET_TRACK_LIST: async (context, payload) => {
+    GET_TRACK_LIST: async context => {
       let { data } = await api.get(
-        "/chart.tracks.get?page=1&page_size=10&country=uk&f_has_lyrics=1&apikey=64d8d5fb7b7d91562b2250b2f449f2ad"
+        "/chart.tracks.get?page=1&page_size=10&country=uk&f_has_lyrics=1&apikey=a19b3047c84059701515131f430c04ce"
       );
       context.commit("SET_TRACK_LIST", data.message.body.track_list);
     }

@@ -17,6 +17,11 @@ export default new Router({
       path: "/search",
       name: "search",
       component: () => import("@/views/Search.vue")
+    },
+    {
+      path: "/lyrics/:id",
+      name: "lyrics",
+      component: () => import("@/views/Lyrics.vue")
     }
   ]
 });
