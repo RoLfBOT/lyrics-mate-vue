@@ -20,7 +20,7 @@ export default {
   actions: {
     GET_TRACK_LYRICS: async (context, payload) => {
       let { data } = await api.get(
-        `/track.lyrics.get?track_id=${payload}&apikey=a19b3047c84059701515131f430c04ce`
+        `/track.lyrics.get?track_id=${payload}&apikey=${process.env.API_KEY}`
       );
       context.commit("SET_TRACK_LYRICS", data.message.body.lyrics);
     }
