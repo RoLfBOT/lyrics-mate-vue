@@ -9,6 +9,9 @@
               {{ _track.track.album_name }}
             </h6>
             <p class="card-text">{{ _track.track.artist_name }}</p>
+            <content-placeholders :rounded="true" v-if="isLoading">
+              <content-placeholders-text :lines="5" />
+            </content-placeholders>
             <p v-if="lyrics" class="card-text">{{ lyrics.lyrics_body }}</p>
             <router-link to="/search" class="btn btn-primary btn-block"
               >Back</router-link
