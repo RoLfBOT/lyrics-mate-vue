@@ -24,7 +24,9 @@ export default {
   actions: {
     GET_TRACK_LIST: async context => {
       let { data } = await api.get(
-        "/chart.tracks.get?page=1&page_size=10&country=uk&f_has_lyrics=1&apikey=a19b3047c84059701515131f430c04ce"
+        `/chart.tracks.get?page=1&page_size=10&country=uk&f_has_lyrics=1&apikey=${
+          process.env.VUE_APP_API_KEY
+        }`
       );
       context.commit("SET_TRACK_LIST", data.message.body.track_list);
     }

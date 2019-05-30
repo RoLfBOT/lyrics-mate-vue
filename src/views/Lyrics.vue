@@ -9,7 +9,7 @@
               {{ _track.track.album_name }}
             </h6>
             <p class="card-text">{{ _track.track.artist_name }}</p>
-            <p v-if="_lyrics" class="card-text">{{ _lyrics.lyrics_body }}</p>
+            <p v-if="lyrics" class="card-text">{{ lyrics.lyrics_body }}</p>
             <router-link to="/search" class="btn btn-primary btn-block"
               >Back</router-link
             >
@@ -21,19 +21,37 @@
 </template>
 
 <script>
+import { api } from "@/store/api";
+
 export default {
+  data() {
+    return {
+      isLoading: false,
+      lyrics: []
+    };
+  },
+
   computed: {
     _track() {
       return this.$store.getters.TRACK(this.$route.params.id);
-    },
-
-    _lyrics() {
-      return this.$store.getters.TRACK_LYRICS;
     }
   },
 
   mounted() {
-    this.$store.dispatch("GET_TRACK_LYRICS", this.$route.params.id);
+    this.fetchLyrics();
+  },
+
+  methods: {
+    async fetchLyrics() {
+      this.isLoading = true;
+      let { data } = await api.get(
+        `/track.lyrics.get?track_id=${this.$route.params.id}&apikey=${
+          process.env.VUE_APP_API_KEY
+        }`
+      );
+      this.isLoading = false;
+      this.lyrics = data.message.body.lyrics;
+    }
   }
 };
 </script>
