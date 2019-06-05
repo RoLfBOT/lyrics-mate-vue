@@ -29,6 +29,15 @@ export default {
         }`
       );
       context.commit("SET_TRACK_LIST", data.message.body.track_list);
+    },
+
+    SEARCH_TRACK_LIST: async (context, payload) => {
+      let { data } = await api.get(
+        `/track.search?q_track_artist=${payload}&page=1&page_size=10&track_rating=desc&apikey=${
+          process.env.VUE_APP_API_KEY
+        }`
+      );
+      context.commit("SET_TRACK_LIST", data.message.body.track_list);
     }
   }
 };

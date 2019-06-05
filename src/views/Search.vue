@@ -10,6 +10,7 @@
               class="form-control"
               id="formGroupExampleInput"
               placeholder="Search by track name"
+              @input="debounceInput"
             />
           </div>
         </form>
@@ -24,6 +25,8 @@
 
 <script>
 import Track from "@/components/Track.vue";
+import _ from "lodash";
+
 export default {
   name: "search",
   components: {
@@ -38,6 +41,12 @@ export default {
     track_list() {
       return this.$store.getters.TRACK_LIST;
     }
+  },
+
+  methods: {
+    debounceInput: _.debounce(function(e) {
+      this.$store.dispatch("SEARCH_TRACK_LIST", e.target.value)
+    }, 500)
   }
 };
 </script>
