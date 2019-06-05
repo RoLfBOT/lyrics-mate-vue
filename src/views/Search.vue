@@ -1,6 +1,6 @@
 <template>
   <div class="container h-100">
-    <div class="card mb-2">
+    <div class="card mb-2 shadow">
       <div class="card-body">
         <h3 class="card-title text-center">Search Lyrics</h3>
         <form class="col-12">
@@ -45,7 +45,7 @@ export default {
 
   methods: {
     debounceInput: _.debounce(function(e) {
-      this.$store.dispatch("SEARCH_TRACK_LIST", e.target.value)
+      this.$store.dispatch("SEARCH_TRACK_LIST", e.target.value);
     }, 500)
   }
 };
